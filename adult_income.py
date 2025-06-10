@@ -42,7 +42,7 @@ nativecountry = st.sidebar.selectbox("Native country",['united-states', 'cuba', 
        'canada', 'germany', 'philippines', 'el-salvador', 'china'])
 
 # read the column values from the json file
-with open('C:/Jothi/ML_Adult_Income/col_names.json','r') as f:
+with open('col_names.json','r') as f:
     cols = json.load(f)
 
 # fill the values with 0
@@ -68,17 +68,15 @@ for col in cols_to_update:
 # df is updated with input values. Start the prediction
 # Load the data
 basic_models = {
-'RF_model': joblib.load("C:/Jothi/ML_Adult_Income/model_RF.pkl"),
-'LR_model': joblib.load("C:/Jothi/ML_Adult_Income/model_LR.pkl"),
-'SVM_model': joblib.load("C:/Jothi/ML_Adult_Income/model_SVM.pkl"),
-'XGB_model': joblib.load("C:/Jothi/ML_Adult_Income/model_XGB.pkl")
+'LR_model': joblib.load("model_LR.pkl"),
+'SVM_model': joblib.load("model_SVM.pkl"),
+'XGB_model': joblib.load("model_XGB.pkl")
 }
 
 tuned_models = {
-    'Tuned_RF': joblib.load("C:/Jothi/ML_Adult_Income/tuned_RF.pkl"),
-    'Tuned_LR': joblib.load("C:/Jothi/ML_Adult_Income/tuned_LR.pkl"),
-    'Tuned_SVM': joblib.load("C:/Jothi/ML_Adult_Income/tuned_SVM.pkl"),
-    'Tuned_XGB': joblib.load("C:/Jothi/ML_Adult_Income/tuned_XGB.pkl")
+    'Tuned_LR': joblib.load("tuned_LR.pkl"),
+    'Tuned_SVM': joblib.load("tuned_SVM.pkl"),
+    'Tuned_XGB': joblib.load("tuned_XGB.pkl")
 }
 if st.button("Predict"):
     model = tuned_models['Tuned_XGB']
