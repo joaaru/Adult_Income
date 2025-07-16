@@ -68,14 +68,12 @@ for col in cols_to_update:
 # df is updated with input values. Start the prediction
 # Load the data
 basic_models = {
-'RF_model': joblib.load("C:/Jothi/ML_Adult_Income/model_RF.pkl"),
 'LR_model': joblib.load("C:/Jothi/ML_Adult_Income/model_LR.pkl"),
 'SVM_model': joblib.load("C:/Jothi/ML_Adult_Income/model_SVM.pkl"),
 'XGB_model': joblib.load("C:/Jothi/ML_Adult_Income/model_XGB.pkl")
 }
 
 tuned_models = {
-    'Tuned_RF': joblib.load("C:/Jothi/ML_Adult_Income/tuned_RF.pkl"),
     'Tuned_LR': joblib.load("C:/Jothi/ML_Adult_Income/tuned_LR.pkl"),
     'Tuned_SVM': joblib.load("C:/Jothi/ML_Adult_Income/tuned_SVM.pkl"),
     'Tuned_XGB': joblib.load("C:/Jothi/ML_Adult_Income/tuned_XGB.pkl")
