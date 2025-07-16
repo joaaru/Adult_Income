@@ -42,7 +42,7 @@ nativecountry = st.sidebar.selectbox("Native country",['united-states', 'cuba', 
        'canada', 'germany', 'philippines', 'el-salvador', 'china'])
 
 # read the column values from the json file
-with open('C:/Jothi/ML_Adult_Income/col_names.json','r') as f:
+with open('col_names.json','r') as f:
     cols = json.load(f)
 
 # fill the values with 0
