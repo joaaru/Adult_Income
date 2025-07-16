@@ -1,7 +1,5 @@
-pip
 streamlit
 numpy
 scikit-learn
 joblib
-json
 matplotlib
