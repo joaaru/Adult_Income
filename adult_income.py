@@ -96,7 +96,7 @@ tuned_models = {
     'Tuned_RF': joblib.load("s_tuned_RF.pkl"),
     'Tuned_SVM': joblib.load("s_tuned_SVM.pkl"),
     'Tuned_XGB': joblib.load("s_tuned_XGB.pkl"),
-    'Tuned_KNN': joblib.load("tuned_KNN.pkl")
+    'Tuned_KNN': joblib.load("s_tuned_KNN.pkl")
 }
 if st.button("Predict"):
     model = tuned_models['Tuned_XGB']
