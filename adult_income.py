@@ -33,7 +33,7 @@ age = st.sidebar.slider("Age",min_value=17,max_value=90,value=30)
 workclass = st.sidebar.selectbox("Workclass",['state-gov', 'self-emp-not-inc', 'private', 'local-gov', 'self-emp-inc', 'without-pay', 'never-worked'])
 
 education = st.sidebar.selectbox("Education",['Preschool','1st-4th','5th-6th','7th-8th','9th','10th','11th','12th','HS-grad',
-                                                  'Some-college','Assoc-voc','Assoc-acdm','Bachelors','Masters','Prof-school','Doctorate']
+                                                  'Some-college','Assoc-voc','Assoc-acdm','Bachelors','Masters','Prof-school','Doctorate'])
 
 maritalstatus = st.sidebar.selectbox("Marital status",['never-married', 'married-civ-spouse', 'married-spouse-absent', 'separated', 'married-af-spouse','widowed'])
 
