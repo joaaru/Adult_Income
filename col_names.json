@@ -19,4 +19,8 @@
        "native-country_germany", "native-country_india",
        "native-country_mexico", "native-country_other",
        "native-country_philippines", "native-country_puerto-rico",
+<<<<<<< HEAD
        "native-country_united-states"]
+=======
+       "native-country_united-states"]
+>>>>>>> 778718ab26c7e98e7f66d671201b9938a42f40a6
