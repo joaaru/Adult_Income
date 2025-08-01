@@ -40,7 +40,7 @@ maritalstatus = st.sidebar.selectbox("Marital status",['never-married', 'married
 occupation = st.sidebar.selectbox("Occupation",['exec-managerial', 'handlers-cleaners','prof-specialty', 
         'other-service', 'sales', 'craft-repair','transport-moving', 'farming-fishing', 'machine-op-inspct'])
 
-relationship = st.sidebar.selectbox("Relationship",['not-in-family', 'husband', 'wife', 'own-child', 'unmarried',
+relationship = st.sidebar.selectbox("Relationship",['not-in-family',  'wife', 'own-child', 'unmarried',
        'other-relative'])
 
 race = st.sidebar.selectbox("Race",['white', 'black', 'asian-pac-islander', 'amer-indian-eskimo','other'])
