@@ -54,7 +54,7 @@ capitalloss = st.sidebar.number_input("Capital Loss")
 hours = st.sidebar.slider("Hours per week",min_value=0,max_value=90,value=40)
 
 nativecountry = st.sidebar.selectbox("Native country",['united-states', 'cuba', 'other', 'india', 'mexico', 'puerto-rico',
-       'canada', 'germany', 'philippines', 'el-salvador', 'china'])
+       'germany', 'philippines', 'el-salvador', 'china'])
 
 # read the column values from the json file
 with open('col_names.json','r') as f:
