@@ -1,4 +1,4 @@
-*********************************************************** Objective ***********************************************************
+******************************************************* Objective *******************************************************
 
 The objective of this project is to create a machine learning prediction model using the adult income dataset to predict if the income will be <=50K or >50K for the given inputs age, education, occupation, workclass, marital-status, relationship, race, sex, native country, capital-gain and capital-loss.
 
