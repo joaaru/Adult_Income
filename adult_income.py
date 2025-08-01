@@ -87,7 +87,7 @@ basic_models = {
 'LR_model': joblib.load("s_model_LR.pkl"),
 'RF_model': joblib.load("s_model_RF.pkl"),
 'SVM_model': joblib.load("s_model_SVM.pkl"),
-'XGB_model': joblib.load("s_model_XGB.pkl")
+'XGB_model': joblib.load("s_model_XGB.pkl"),
 'KNN_model': joblib.load("s_model_KNN.pkl")
 }
 
@@ -95,7 +95,7 @@ tuned_models = {
     'Tuned_LR': joblib.load("s_tuned_LR.pkl"),
     'Tuned_RF': joblib.load("s_tuned_RF.pkl"),
     'Tuned_SVM': joblib.load("s_tuned_SVM.pkl"),
-    'Tuned_XGB': joblib.load("s_tuned_XGB.pkl")
+    'Tuned_XGB': joblib.load("s_tuned_XGB.pkl"),
     'Tuned_KNN': joblib.load("tuned_KNN.pkl")
 }
 if st.button("Predict"):
