@@ -156,11 +156,12 @@ st.write('Modex index : ',m_index,cmatrix[m_index])
 #display the analytics data
 # Classification report
 cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
-st.write('******** CLASSIFICATION_REPORT ******** \n',cr)
+st.write("******** CLASSIFICATION_REPORT ******** \n \n",cr)
 
 # Confusion matrix
-fig = plt.figure()
+fig, ax = plt.figure()
 sns.heatmap(cmatrix[m_index], annot=True, fmt='d')
+ax.set_title("Confusion Matrix")
 st.pyplot(fig)
 
 # Roc curve
