@@ -26,9 +26,6 @@ education_dict = {'HS-grad' : 9,
 
 # Page title
 st.title('Income prediction')
-st.markdown('This model predicts if the income of a person will be >50K or <=50K based on the input parameters. This model ' \
-'uses the Tuned XGBoosting algorithm which appears to be the best based on training and testing the dataset on various ' \
-'binary classification algorithms')
 
 age = st.sidebar.slider("Age",min_value=17,max_value=90,value=30)
 
@@ -148,35 +145,12 @@ model_dict = {
     'TunedKNN' : 9
 }
 
-model = st.selectbox("Select a model ",['LogisticRegression','RandomForest','XGBoosting','SVM','KNN','TunedRandomForest',
-                        'TunedLogisticRegression','TunedXGBoosting','TunedSVM','TunedKNN'])
-m_index = model_dict[model]
-
-#display the analytics data
-# Classification report
-cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
-cr = cr.replace("\n"," \n       ")
-st.write("******** CLASSIFICATION_REPORT ******** \n \n",cr)
-
-# Confusion matrix
-fig, ax = plt.subplots()
-sns.heatmap(cmatrix[m_index], annot=True, fmt='d')
-ax.set_title("Confusion Matrix")
-st.pyplot(fig)
-
-# Roc curve
-fig, ax = plt.subplots()
-ax.plot(fr[m_index], tr[m_index], label=f"{model} (AUC = {scores[m_index]:.2f})")
-ax.plot([0, 1], [0, 1], 'k--')  # Diagonal line
-ax.set_xlabel("False Positive Rate")
-ax.set_ylabel("True Positive Rate")
-ax.set_title("ROC Curve")
-ax.legend(loc="lower right")
-  
-# Show in Streamlit
-st.pyplot(fig)
-
-if st.button("Predict"):
+tab1, tab2 = st.tabs(["Prediction","Analysis"])
+with tab1:
+  st.markdown('This model predicts if the income of a person will be >50K or <=50K based on the input parameters. This model ' \
+  'uses the Tuned XGBoosting algorithm which appears to be the best based on training and testing the dataset on various ' \
+  'binary classification algorithms')
+  if st.button("Predict"):
     model = tuned_models['Tuned_XGB']
     prediction = model.predict(df)      
     #st.write("Predicted class for the given input : {prediction[0]}")
@@ -185,15 +159,49 @@ if st.button("Predict"):
     else:
         st.write("Based on the given input, the income will be >50K")
 
-probability = tuned_models['Tuned_XGB'].predict_proba(df)[0]
-class_names = tuned_models['Tuned_XGB'].classes_
+    probability = tuned_models['Tuned_XGB'].predict_proba(df)[0]
+    class_names = tuned_models['Tuned_XGB'].classes_
+    
+    #st.write(f" Predicted Class: **{prediction[0]}**")
+    st.write("Predication Probability")
+    # Show probabilities in a table
+    prob_df = pd.DataFrame({
+            "Class": class_names,
+            "Probability": probability
+        }).sort_values(by="Probability", ascending=False)
+    
+    st.bar_chart(prob_df.set_index("Class"))
+  with tab2:
+    st.markdown('Select a model below to view the Classification Report, Confusion Matrix and ROC-AUC curve.' )
+    model = st.selectbox("Model ",['LogisticRegression','RandomForest','XGBoosting','SVM','KNN','TunedRandomForest',
+                        'TunedLogisticRegression','TunedXGBoosting','TunedSVM','TunedKNN'])
+    m_index = model_dict[model]
+    
+    #display the analytics data
+    # Classification report
+    cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
+    cr = cr.replace("\n"," \n       ")
+    st.write("******** CLASSIFICATION_REPORT ******** \n \n",cr)
+    
+    # Confusion matrix
+    fig, ax = plt.subplots()
+    sns.heatmap(cmatrix[m_index], annot=True, fmt='d')
+    ax.set_title("Confusion Matrix")
+    st.pyplot(fig)
+    
+    # Roc curve
+    fig, ax = plt.subplots()
+    ax.plot(fr[m_index], tr[m_index], label=f"{model} (AUC = {scores[m_index]:.2f})")
+    ax.plot([0, 1], [0, 1], 'k--')  # Diagonal line
+    ax.set_xlabel("False Positive Rate")
+    ax.set_ylabel("True Positive Rate")
+    ax.set_title("ROC Curve")
+    ax.legend(loc="lower right")
+      
+    # Show in Streamlit
+    st.pyplot(fig)
+    
+  
 
-#st.write(f" Predicted Class: **{prediction[0]}**")
-st.write("Predication Probability")
-# Show probabilities in a table
-prob_df = pd.DataFrame({
-        "Class": class_names,
-        "Probability": probability
-    }).sort_values(by="Probability", ascending=False)
 
-st.bar_chart(prob_df.set_index("Class"))
+
