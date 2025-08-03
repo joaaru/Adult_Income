@@ -214,7 +214,6 @@ with tab1:
     data = pd.Series(accuracy)
     fig, ax = plt.subplots(figsize=(10,8))  # width, height in inches
     data.plot(kind='bar', ax=ax)
-    ax.set_title("Custom Size Bar Chart")
 
     # Display in Streamlit
     st.pyplot(fig)
