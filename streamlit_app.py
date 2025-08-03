@@ -156,6 +156,7 @@ st.write('Modex index : ',m_index,cmatrix[m_index])
 #display the analytics data
 # Classification report
 cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
+cr = cr.replace("\n"," \n")
 st.write("******** CLASSIFICATION_REPORT ******** \n \n",cr)
 
 # Confusion matrix
