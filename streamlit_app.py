@@ -129,8 +129,8 @@ for i in range(len(df_plots)):
     matrix = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'Matrix'].values[0]
     matrix = matrix.translate(str.maketrans("","","[]\n,"))
     temp = [int(x) for x in matrix.split(' ')]
-    list1 = matrix[:2]
-    list2 = matrix[2:]
+    list1 = temp[:2]
+    list2 = temp[2:]
     matrix = [list1,list2]
     cmatrix.append(matrix)
 #end of for loop
