@@ -134,35 +134,28 @@ model = st.selectbox("Select a model ",['LogisticRegression','RandomForest','XGB
                         'TunedLogisticRegression','TunedXGBoosting','TunedSVM','TunedKNN'])
 m_index = model_dict[model]
 
-#display the analytics data
-# Classification report
-cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
-st.write('******** CLASSIFICATION_REPORT ******** \n',cr)
-
-# Confusion matrix
-fig = plt.figure()
-sns.heatmap(matrix[m_index], annot=True, fmt='d')
-st.pyplot(fig)
-
-# Roc curve
-fig, ax = plt.subplots()
-ax.plot(fr[m_index], tr[m_index], label=f"{model} (AUC = {scores[m_index]:.2f})")
-ax.plot([0, 1], [0, 1], 'k--')  # Diagonal line
-ax.set_xlabel("False Positive Rate")
-ax.set_ylabel("True Positive Rate")
-ax.set_title("ROC Curve")
-ax.legend(loc="lower right")
-
-# Show in Streamlit
-st.pyplot(fig)
-
-if st.button("Charts"):
-  tabs = st.tabs(["Tab " + str(i) for i in range(1, 4)])
-
-  for i, tab in enumerate(tabs):
-    with tab:
-        st.write(f"This is content for Tab {i+1}")
+if st.button('Analysis'):
+  #display the analytics data
+  # Classification report
+  cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
+  st.write('******** CLASSIFICATION_REPORT ******** \n',cr)
   
+  # Confusion matrix
+  fig = plt.figure()
+  sns.heatmap(matrix[m_index], annot=True, fmt='d')
+  st.pyplot(fig)
+  
+  # Roc curve
+  fig, ax = plt.subplots()
+  ax.plot(fr[m_index], tr[m_index], label=f"{model} (AUC = {scores[m_index]:.2f})")
+  ax.plot([0, 1], [0, 1], 'k--')  # Diagonal line
+  ax.set_xlabel("False Positive Rate")
+  ax.set_ylabel("True Positive Rate")
+  ax.set_title("ROC Curve")
+  ax.legend(loc="lower right")
+  
+  # Show in Streamlit
+  st.pyplot(fig)
 
 if st.button("Predict"):
     model = tuned_models['Tuned_XGB']
