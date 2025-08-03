@@ -102,7 +102,7 @@ tuned_models = {
 }
 df_plots = pd.read_csv('Results_Standardized.csv')
 
-fr = tr = scores =matrix = [[] for _ in range(len(df_plots))]
+fr = tr = scores = cmatrix = [[] for _ in range(len(df_plots))]
 for i in range(len(df_plots)):
     #parsing false_ratio to decode the list from the string
     false_ratio = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'False_Ratio'].values[0]
@@ -130,6 +130,7 @@ for i in range(len(df_plots)):
     list1 = matrix[:2]
     list2 = matrix[2:]
     matrix = [list1,list2]
+    cmatrix.append(matrix)
 #end of for loop
 
 model_dict = {
@@ -156,7 +157,7 @@ st.write('******** CLASSIFICATION_REPORT ******** \n',cr)
 
 # Confusion matrix
 fig = plt.figure()
-sns.heatmap(matrix[m_index], annot=True, fmt='d')
+sns.heatmap(cmatrix[m_index], annot=True, fmt='d')
 st.pyplot(fig)
 
 # Roc curve
