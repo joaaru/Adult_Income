@@ -151,7 +151,8 @@ model_dict = {
 model = st.selectbox("Select a model ",['LogisticRegression','RandomForest','XGBoosting','SVM','KNN','TunedRandomForest',
                         'TunedLogisticRegression','TunedXGBoosting','TunedSVM','TunedKNN'])
 m_index = model_dict[model]
-st.write('Modex index : ',m_index)
+st.write('Modex index : ',m_index,cmatrix[m_index])
+
 #display the analytics data
 # Classification report
 cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
