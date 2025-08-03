@@ -120,7 +120,8 @@ for i in range(len(df_plots)):
     tr[i].append(true_ratio)
 
     #roc score values
-    scores = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'AUC_Score'].values[0]
+    score = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'AUC_Score'].values[0]
+    scores[i].append(score)
 
     # confusion matrix values
     matrix = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'Matrix'].values[0]
@@ -130,7 +131,7 @@ for i in range(len(df_plots)):
     list1 = matrix[:2]
     list2 = matrix[2:]
     matrix = [list1,list2]
-    cmatrix.append(matrix)
+    cmatrix[i].append(matrix)
 #end of for loop
 
 model_dict = {
@@ -157,7 +158,7 @@ st.write('******** CLASSIFICATION_REPORT ******** \n',cr)
 
 # Confusion matrix
 fig = plt.figure()
-sns.heatmap(cmatrix[m_index], annot=True, fmt='f')
+sns.heatmap(cmatrix[m_index], annot=True, fmt='d')
 st.pyplot(fig)
 
 # Roc curve
