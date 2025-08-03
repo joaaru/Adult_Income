@@ -102,41 +102,37 @@ tuned_models = {
 }
 df_plots = pd.read_csv('Results_Standardized.csv')
 
-fr =  [[] for _ in range(len(df_plots))]
-tr =  [[] for _ in range(len(df_plots))]
-scores =  [[] for _ in range(len(df_plots))]
-cmatrix = [[] for _ in range(len(df_plots))]
+fr = []
+tr =  []
+scores =  []
+cmatrix = []
 
-#cmatrix = [[],[] for _ in range(len(df_plots))]
 for i in range(len(df_plots)):
     #parsing false_ratio to decode the list from the string
     false_ratio = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'False_Ratio'].values[0]
     false_ratio = false_ratio.translate(str.maketrans("","","[],"))
-    temp=false_ratio.split(' ')
-    false_ratio = [float(x) for x in temp]
-    fr[i].append(false_ratio)
+    temp = [float(x) for x in false_ratio.split(' ')]
+    fr.append(temp)
 
 
     #parsing function to decode the list from the string
     true_ratio = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'True_Ratio'].values[0]
     true_ratio = true_ratio.translate(str.maketrans("","","[],"))
-    temp=true_ratio.split(' ')
-    true_ratio = [float(x) for x in temp]
-    tr[i].append(true_ratio)
+    temp = [float(x) for x in true_ratio.split(' ')]
+    tr.append(temp)
 
     #roc score values
     score = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'AUC_Score'].values[0]
-    scores[i].append(score)
+    scores.append(score)
 
     # confusion matrix values
     matrix = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'Matrix'].values[0]
     matrix = matrix.translate(str.maketrans("","","[]\n,"))
-    temp=matrix.split(' ')
-    matrix = [int(x) for x in temp]
-    #list1 = matrix[:2]
-    #list2 = matrix[2:]
-    #matrix = [list1,list2]
-    cmatrix[i].append(matrix)
+    temp = [int(x) for x in matrix.split(' ')]
+    list1 = matrix[:2]
+    list2 = matrix[2:]
+    matrix = [list1,list2]
+    cmatrix.append(matrix)
 #end of for loop
 
 model_dict = {
@@ -162,12 +158,8 @@ cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
 st.write('******** CLASSIFICATION_REPORT ******** \n',cr)
 
 # Confusion matrix
-matrix = cmatrix[m_index]
-list1 = matrix[:2]
-list2 = matrix[2:]
-matrix = [list1,list2]
 fig = plt.figure()
-sns.heatmap(matrix, annot=True, fmt='d')
+sns.heatmap(cmatrix[m_index], annot=True, fmt='d')
 st.pyplot(fig)
 
 # Roc curve
