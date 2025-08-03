@@ -157,7 +157,7 @@ st.write('******** CLASSIFICATION_REPORT ******** \n',cr)
 
 # Confusion matrix
 fig = plt.figure()
-sns.heatmap(cmatrix[m_index], annot=True, fmt='d')
+sns.heatmap(cmatrix[m_index], annot=True, fmt='f')
 st.pyplot(fig)
 
 # Roc curve
