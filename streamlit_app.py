@@ -4,6 +4,7 @@ import streamlit as st
 import joblib
 from sklearn.ensemble import IsolationForest
 import json
+import matplotlib.pyplot as plt
 
 education_dict = {'HS-grad' : 9,
 'Some-college' : 10,
