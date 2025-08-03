@@ -4,7 +4,6 @@ scikit-learn
 joblib
 matplotlib
 xgboost
-GridSearchCV
 KNeighborsClassifier
 accuracy_score
 SVC
@@ -17,4 +16,5 @@ XGBClassifier
 roc_curve
 roc_auc_score
 seaborn
+
 
