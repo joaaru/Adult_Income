@@ -183,7 +183,7 @@ with tab1:
                         'TunedLogisticRegression','TunedXGBoosting','TunedSVM','TunedKNN'])
     m_index = model_dict[model]
 
-    st.write(f"Accuracy Score - {acc_percent[m_index}%")
+    st.write(f"Accuracy Score - {acc_percent[m_index]}%")
     
     #display the analytics data
     # Classification report
