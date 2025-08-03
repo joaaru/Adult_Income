@@ -209,7 +209,7 @@ with tab1:
     # Show in Streamlit
     st.pyplot(fig)
   with tab3:
-    accuracy = dict(zip(df_plots['Algorithms'], df['Accuracy']))
+    accuracy = dict(zip(df_plots['Algorithms'], df_plots['Accuracy']))
     st.bar_chart(pd.Series(accuracy))
    
     
