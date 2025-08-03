@@ -159,7 +159,7 @@ cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
 st.write("******** CLASSIFICATION_REPORT ******** \n \n",cr)
 
 # Confusion matrix
-fig, ax = plt.figure()
+fig, ax = plt.subplots()
 sns.heatmap(cmatrix[m_index], annot=True, fmt='d')
 ax.set_title("Confusion Matrix")
 st.pyplot(fig)
