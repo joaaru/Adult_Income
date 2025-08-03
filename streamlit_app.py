@@ -130,32 +130,44 @@ for i in range(len(df_plots)):
     matrix = [list1,list2]
 #end of for loop
 
+model_dict = {
+    'LogisticRegression' : 0,
+    'RandomForest' : 1,
+    'XGBoosting' : 2,
+    'SVM' : 3,
+    'KNN' : 4,
+    'TunedRandomForest' : 5,
+    'TunedLogisticRegression': 6,
+    'TunedXGBoosting' : 7,
+    'TunedSVM' : 8,
+    'TunedKNN' : 9
+}
+
 model = st.selectbox("Select a model ",['LogisticRegression','RandomForest','XGBoosting','SVM','KNN','TunedRandomForest',
                         'TunedLogisticRegression','TunedXGBoosting','TunedSVM','TunedKNN'])
 m_index = model_dict[model]
 
-if st.button('Analysis'):
-  #display the analytics data
-  # Classification report
-  cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
-  st.write('******** CLASSIFICATION_REPORT ******** \n',cr)
+#display the analytics data
+# Classification report
+cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
+st.write('******** CLASSIFICATION_REPORT ******** \n',cr)
+
+# Confusion matrix
+fig = plt.figure()
+sns.heatmap(matrix[m_index], annot=True, fmt='d')
+st.pyplot(fig)
+
+# Roc curve
+fig, ax = plt.subplots()
+ax.plot(fr[m_index], tr[m_index], label=f"{model} (AUC = {scores[m_index]:.2f})")
+ax.plot([0, 1], [0, 1], 'k--')  # Diagonal line
+ax.set_xlabel("False Positive Rate")
+ax.set_ylabel("True Positive Rate")
+ax.set_title("ROC Curve")
+ax.legend(loc="lower right")
   
-  # Confusion matrix
-  fig = plt.figure()
-  sns.heatmap(matrix[m_index], annot=True, fmt='d')
-  st.pyplot(fig)
-  
-  # Roc curve
-  fig, ax = plt.subplots()
-  ax.plot(fr[m_index], tr[m_index], label=f"{model} (AUC = {scores[m_index]:.2f})")
-  ax.plot([0, 1], [0, 1], 'k--')  # Diagonal line
-  ax.set_xlabel("False Positive Rate")
-  ax.set_ylabel("True Positive Rate")
-  ax.set_title("ROC Curve")
-  ax.legend(loc="lower right")
-  
-  # Show in Streamlit
-  st.pyplot(fig)
+# Show in Streamlit
+st.pyplot(fig)
 
 if st.button("Predict"):
     model = tuned_models['Tuned_XGB']
