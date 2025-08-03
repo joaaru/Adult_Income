@@ -102,8 +102,8 @@ tuned_models = {
 }
 df_plots = pd.read_csv('Results_Standardized.csv')
 
-fr = tr = scores = [[] for _ in range(len(df_plots))]
-cmatrix = [[],[] for _ in range(len(df_plots))]
+fr = tr = scores = cmatrix = [[] for _ in range(len(df_plots))]
+#cmatrix = [[],[] for _ in range(len(df_plots))]
 for i in range(len(df_plots)):
     #parsing false_ratio to decode the list from the string
     false_ratio = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'False_Ratio'].values[0]
@@ -129,9 +129,9 @@ for i in range(len(df_plots)):
     matrix = matrix.translate(str.maketrans("","","[]\n,"))
     temp=matrix.split(' ')
     matrix = [int(x) for x in temp]
-    list1 = matrix[:2]
-    list2 = matrix[2:]
-    matrix = [list1,list2]
+    #list1 = matrix[:2]
+    #list2 = matrix[2:]
+    #matrix = [list1,list2]
     cmatrix[i].append(matrix)
 #end of for loop
 
@@ -158,8 +158,12 @@ cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
 st.write('******** CLASSIFICATION_REPORT ******** \n',cr)
 
 # Confusion matrix
+matrix = cmatrix[m_index]
+list1 = matrix[:2]
+list2 = matrix[2:]
+matrix = [list1,list2]
 fig = plt.figure()
-sns.heatmap(cmatrix[m_index], annot=True, fmt='d')
+sns.heatmap(matrix, annot=True, fmt='d')
 st.pyplot(fig)
 
 # Roc curve
