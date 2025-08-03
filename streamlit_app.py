@@ -146,7 +146,7 @@ st.pyplot(fig)
 
 # Roc curve
 fig, ax = plt.subplots()
-ax.plot(fr[m_index], tr[m_index], label=f"{model} (AUC = {scores[m_index:.2f})")
+ax.plot(fr[m_index], tr[m_index], label=f"{model} (AUC = {scores[m_index]:.2f})")
 ax.plot([0, 1], [0, 1], 'k--')  # Diagonal line
 ax.set_xlabel("False Positive Rate")
 ax.set_ylabel("True Positive Rate")
