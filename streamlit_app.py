@@ -151,7 +151,7 @@ model_dict = {
     'TunedKNN' : 9
 }
 
-tab1, tab2,tab3 = st.tabs(["Prediction","Analysis","Comparision"])
+tab1, tab2,tab3 = st.tabs(["Prediction","Analysis","Comparison"])
 with tab1:
   st.markdown('This model predicts if the income of a person will be >50K or <=50K based on the input parameters. This model ' \
   'uses the Tuned XGBoosting algorithm which appears to be the best based on training and testing the dataset on various ' \
@@ -170,7 +170,7 @@ with tab1:
     
     #st.write(f" Predicted Class: **{prediction[0]}**")
     st.write("Predication Probability")
-    # Show probabilities in a table
+    # Show probabilities
     prob_df = pd.DataFrame({
             "Class": class_names,
             "Probability": probability
@@ -179,7 +179,7 @@ with tab1:
     st.bar_chart(prob_df.set_index("Class"))
   with tab2:
     st.markdown('Select a model below to view the Classification Report, Confusion Matrix and ROC-AUC curve.' )
-    model = st.selectbox("Model ",['LogisticRegression','RandomForest','XGBoosting','SVM','KNN','TunedRandomForest',
+    model = st.selectbox(['LogisticRegression','RandomForest','XGBoosting','SVM','KNN','TunedRandomForest',
                         'TunedLogisticRegression','TunedXGBoosting','TunedSVM','TunedKNN'])
     m_index = model_dict[model]
 
@@ -209,8 +209,16 @@ with tab1:
     # Show in Streamlit
     st.pyplot(fig)
   with tab3:
+    st.markdown('Comparison of accuracy scores of all the models')
     accuracy = dict(zip(df_plots['Algorithms'], df_plots['Accuracy']))
-    st.bar_chart(pd.Series(accuracy))
+    data = pd.Series(accuracy)
+    fig, ax = plt.subplots(figsize=(10,8))  # width, height in inches
+    data.plot(kind='bar', ax=ax)
+    ax.set_title("Custom Size Bar Chart")
+
+    # Display in Streamlit
+    st.pyplot(fig)
+
    
     
   
