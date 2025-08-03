@@ -13,8 +13,8 @@ LogisticRegression
 RandomForestClassifier
 classification_report
 confusion_matrix
-xgboost
 XGBClassifier
 roc_curve
 roc_auc_score
 seaborn
+
