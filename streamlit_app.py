@@ -102,7 +102,11 @@ tuned_models = {
 }
 df_plots = pd.read_csv('Results_Standardized.csv')
 
-fr = tr = scores = cmatrix = [[] for _ in range(len(df_plots))]
+fr =  [[] for _ in range(len(df_plots))]
+tr =  [[] for _ in range(len(df_plots))]
+scores =  [[] for _ in range(len(df_plots))]
+cmatrix = [[] for _ in range(len(df_plots))]
+
 #cmatrix = [[],[] for _ in range(len(df_plots))]
 for i in range(len(df_plots)):
     #parsing false_ratio to decode the list from the string
