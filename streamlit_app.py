@@ -103,6 +103,7 @@ fr = []
 tr =  []
 scores =  []
 cmatrix = []
+acc_percent = []
 
 for i in range(len(df_plots)):
     #parsing false_ratio to decode the list from the string
@@ -130,6 +131,11 @@ for i in range(len(df_plots)):
     list2 = temp[2:]
     matrix = [list1,list2]
     cmatrix.append(matrix)
+
+    # Calculate accuracy percentage
+    temp = round(float(df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'Accuracy'].values[0]) * 100,2)
+    acc_percent.append(temp)
+
 #end of for loop
 
 model_dict = {
@@ -145,7 +151,7 @@ model_dict = {
     'TunedKNN' : 9
 }
 
-tab1, tab2 = st.tabs(["Prediction","Analysis"])
+tab1, tab2,tab3 = st.tabs(["Prediction","Analysis","Comparision"])
 with tab1:
   st.markdown('This model predicts if the income of a person will be >50K or <=50K based on the input parameters. This model ' \
   'uses the Tuned XGBoosting algorithm which appears to be the best based on training and testing the dataset on various ' \
@@ -176,16 +182,18 @@ with tab1:
     model = st.selectbox("Model ",['LogisticRegression','RandomForest','XGBoosting','SVM','KNN','TunedRandomForest',
                         'TunedLogisticRegression','TunedXGBoosting','TunedSVM','TunedKNN'])
     m_index = model_dict[model]
+
+    st.write(f"Accuracy Score - {acc_percent[m_index}%")
     
     #display the analytics data
     # Classification report
     cr = df_plots.loc[df_plots['Algorithms'] == model,'Report'].values[0]
     cr = cr.replace("\n"," \n       ")
-    st.write("******** CLASSIFICATION_REPORT ******** \n \n",cr)
+    st.write("******************************** CLASSIFICATION_REPORT ******************************** \n \n",cr)
     
     # Confusion matrix
     fig, ax = plt.subplots()
-    sns.heatmap(cmatrix[m_index], annot=True, fmt='d')
+    sns.heatmap(cmatrix[m_index], annot=True, fmt='d',cmap='Blues')
     ax.set_title("Confusion Matrix")
     st.pyplot(fig)
     
@@ -200,6 +208,10 @@ with tab1:
       
     # Show in Streamlit
     st.pyplot(fig)
+  with tab3:
+    accuracy = dict(zip(df_plots['Algorithms'], df['Accuracy']))
+    st.bar_chart(pd.Series(accuracy))
+   
     
   
 
