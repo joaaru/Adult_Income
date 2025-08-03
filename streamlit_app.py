@@ -5,6 +5,7 @@ import joblib
 from sklearn.ensemble import IsolationForest
 import json
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 education_dict = {'HS-grad' : 9,
 'Some-college' : 10,
