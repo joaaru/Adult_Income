@@ -98,6 +98,46 @@ tuned_models = {
     'Tuned_XGB': joblib.load("s_tuned_XGB.pkl"),
     'Tuned_KNN': joblib.load("s_tuned_KNN.pkl")
 }
+df_plots = pd.read_csv('Results_Standardized.csv')
+
+fr = tr = scores =matrix = [[] for _ in range(len(df_plots))]
+for i in range(len(df_plots)):
+    #parsing false_ratio to decode the list from the string
+    false_ratio = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'False_Ratio'].values[0]
+    false_ratio = false_ratio.translate(str.maketrans("","","[],"))
+    temp=false_ratio.split(' ')
+    false_ratio = [float(x) for x in temp]
+    fr[i].append(false_ratio)
+
+
+    #parsing function to decode the list from the string
+    true_ratio = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'True_Ratio'].values[0]
+    true_ratio = true_ratio.translate(str.maketrans("","","[],"))
+    temp=true_ratio.split(' ')
+    true_ratio = [float(x) for x in temp]
+    tr[i].append(true_ratio)
+
+    #roc score values
+    scores = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'AUC_Score'].values[0]
+
+    # confusion matrix values
+    matrix = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'Matrix'].values[0]
+    matrix = matrix.translate(str.maketrans("","","[]\n,"))
+    temp=matrix.split(' ')
+    matrix = [int(x) for x in temp]
+    list1 = matrix[:2]
+    list2 = matrix[2:]
+    matrix = [list1,list2]
+#end of for loop
+
+if st.button("Charts"):
+  tabs = st.tabs(["Tab " + str(i) for i in range(1, 4)])
+
+  for i, tab in enumerate(tabs):
+    with tab:
+        st.write(f"This is content for Tab {i+1}")
+  
+
 if st.button("Predict"):
     model = tuned_models['Tuned_XGB']
     prediction = model.predict(df)      
