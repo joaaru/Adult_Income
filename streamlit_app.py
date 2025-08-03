@@ -102,7 +102,8 @@ tuned_models = {
 }
 df_plots = pd.read_csv('Results_Standardized.csv')
 
-fr = tr = scores = cmatrix = [[] for _ in range(len(df_plots))]
+fr = tr = scores = [[] for _ in range(len(df_plots))]
+cmatrix = [[][] for _ in range(len(df_plots))]
 for i in range(len(df_plots)):
     #parsing false_ratio to decode the list from the string
     false_ratio = df_plots.loc[df_plots['Algorithms'] == df_plots['Algorithms'][i],'False_Ratio'].values[0]
