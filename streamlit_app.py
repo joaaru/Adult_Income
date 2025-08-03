@@ -179,7 +179,7 @@ with tab1:
     st.bar_chart(prob_df.set_index("Class"))
   with tab2:
     st.markdown('Select a model below to view the Classification Report, Confusion Matrix and ROC-AUC curve.' )
-    model = st.selectbox(['LogisticRegression','RandomForest','XGBoosting','SVM','KNN','TunedRandomForest',
+    model = st.selectbox("Model ", ['LogisticRegression','RandomForest','XGBoosting','SVM','KNN','TunedRandomForest',
                         'TunedLogisticRegression','TunedXGBoosting','TunedSVM','TunedKNN'])
     m_index = model_dict[model]
 
