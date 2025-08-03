@@ -4,3 +4,17 @@ scikit-learn
 joblib
 matplotlib
 xgboost
+GridSearchCV
+KNeighborsClassifier
+accuracy_score
+SVC
+sklearn
+LogisticRegression
+RandomForestClassifier
+classification_report
+confusion_matrix
+xgboost
+XGBClassifier
+roc_curve
+roc_auc_score
+seaborn
