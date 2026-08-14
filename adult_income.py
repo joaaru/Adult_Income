@@ -24,9 +24,32 @@ education_dict = {'HS-grad' : 9,
 
 # Page title
 st.title('Income prediction')
-st.markdown('This model predicts if the income of a person will be >50K or <=50K based on the input parameters. This model ' \
-'uses the Tuned XGBoosting algorithm which appears to be the best based on training and testing the dataset on various ' \
-'binary classification algorithms')
+st.markdown("""
+## Introduction
+
+Welcome to the **Adult Income Prediction** application!
+
+This project uses machine learning to predict whether an individual's annual income is **greater than $50,000** based on demographic and employment-related characteristics.
+
+The application is built using **Python, Pandas, NumPy, Scikit-learn, and Streamlit** and demonstrates an end-to-end machine learning workflow, including:
+
+- **Data preprocessing**
+- **Exploratory data analysis**
+- **Feature engineering**
+- **Model development**
+- **Model evaluation**
+- **Model deployment**
+
+### Project Objectives
+
+- Analyze demographic and employment-related factors associated with income.
+- Build and evaluate a binary classification model.
+- Identify important features influencing income predictions.
+- Deploy the trained model as an interactive web application.
+- Demonstrate how machine learning can support data-driven insights.
+
+Enter the individual's information in the prediction section to explore the model's prediction in real time.
+""")
 
 age = st.sidebar.slider("Age",min_value=17,max_value=90,value=30)
 
