@@ -175,7 +175,7 @@ The application is built using **Python, Pandas, NumPy, Scikit-learn, and Stream
 - Deploy the trained model as an interactive web application.
 - Demonstrate how machine learning can support data-driven insights.
 
-Enter the individual's information in the prediction section to explore the model's prediction in real time.
+Enter the individual's information and move on to the prediction section to explore the model's prediction in real time.
 """)
   
 with tab1:
